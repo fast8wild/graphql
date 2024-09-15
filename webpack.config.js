@@ -38,9 +38,11 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
+            base: '/graphql/'
         }),
     ],
     optimization: {
+        minimize: true,
         splitChunks: {
             chunks: 'all',
             name: false, // Ensure unique chunk names
