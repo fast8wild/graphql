@@ -1,0 +1,137 @@
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ecedfd;
+    display:flex;
+    height: 100%;
+}
+
+form {
+    height: 200px;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -200px;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+    background-color: #e1e1e1;
+    border-style: solid;
+    border-color: rgb(137, 176, 247);
+    border-radius: 10px;
+}
+
+.login-field {
+    border-style: solid;
+    border-radius: 5px;
+    border-color: rgb(137, 176, 247);
+}
+
+.login-field:focus {
+    outline: none;
+    border-color: rgb(32, 110, 255);
+}
+
+.login-button{
+    border-style: solid;
+    border-radius: 5px;
+    border-color: rgb(32, 110, 255);
+    font-size: 16px;
+}
+
+.login-button:hover{
+    background-color: rgb(137, 176, 247);
+}
+
+.login-button:active{
+    background-color: rgb(32, 110, 255);
+}
+
+.welcome {
+    font-size:40px;
+    font-weight:bolder;
+    color: rgb(32, 110, 255);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -175px 0 0 -225px;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+}
+
+.header {
+    font-size:18px;
+    font-weight:bolder;
+    color: rgb(32, 110, 255);
+    padding-bottom: 5px;
+}
+
+
+.container {
+    height: 125px;
+    width: 800px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -300px 0 0 -400px;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+    background-color: #e1e1e1;
+    border-style: solid;
+    border-color: rgb(137, 176, 247);
+    border-radius: 10px;
+}
+
+.profile {
+    height: 125px;
+    width: 600px;
+    margin: -350px 0 0 -300px;
+}
+
+.auditRatio {
+    height: 150px;
+    width: 400px;
+    margin: -200px 0 0 -200px;
+}
+
+.xpTrend {
+    height: 550px;
+    margin: -25px 0 0 -450px;
+    width: 900px;
+}
+
+.passTrend {
+    height: 550px;
+    margin: 550px 0 0 -450px;
+    width: 900px;
+}
+
+.logout-button{
+    position:fixed;
+    left: 5px;
+    top: 5px;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: rgb(32, 110, 255);
+    font-size: 16px;
+}
+
+.logout-button:hover{
+    background-color: rgb(137, 176, 247);
+}
+
+.logout-button:active{
+    background-color: rgb(32, 110, 255);
+}
