@@ -7,8 +7,8 @@
   "scripts": {
     "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --mode development --port 8080",
-    "build": "webpack --mode production --port 8080"
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",
