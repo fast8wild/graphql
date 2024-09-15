@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 import { fetchAuditRatioData, fetchPassTrendData, fetchProfileData, fetchXPTrendData } from '../utils/api';
 import { useAuth, getJWT, parseJwt } from '../utils/auth'
 import { useNavigate, Navigate } from 'react-router-dom';
-import { AuditRatioPieChart } from './Charts/AuditRatioPieChart';
+import { AuditRatioPieChart } from './charts/AuditRatioPieChart';
 import { XpTrendGraph } from './charts/XpTrendGraph';
 import { PassTrendGraph } from './charts/PassTrendGraph';
 
