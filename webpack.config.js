@@ -6,7 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js', // Use [name] to ensure unique filenames
-        publicPath: '/'
+        publicPath: '/graphql/'
     },
     mode: 'development', // Set mode to 'development' or 'production'
     module: {
