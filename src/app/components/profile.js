@@ -14,6 +14,7 @@ export function ProfilePage() {
     const [auditRatio, setAuditRatio] = useState(null)
     const [passTrend, setPassTrend] = useState(null)
     const [xpTrend, setXpTrend] = useState(null)
+    const [filterList, setFilterList] = useState([])
     const [graphFilter, setGraphFilter] = useState(0)
     const navigate = useNavigate();
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -47,6 +48,13 @@ export function ProfilePage() {
             setAuditRatio(b)
             setPassTrend(c)
             setXpTrend(d)
+            let f = []
+            d.forEach((val) => {
+                if (!f.includes(val[2])) {
+                    f = f.concat([val[2]])
+                }
+            })
+            setFilterList(f)
             setDataLoaded(true)
         } catch (err) {
             console.error('Error loading data:', err);
@@ -81,12 +89,16 @@ export function ProfilePage() {
                 <AuditRatioPieChart auditRatio={auditRatio} />
             </div><br />
             <div className='filter container'>
-                <div className='header'>Trend Filter</div>
+                <div className='header'>Module Filter</div>
                 <select name="filter" id="filter" value={graphFilter} onChange={(event) => setGraphFilter(Number(event.target.value))}>
                     <option value="0">All</option>
-                    <option value="37">Go Piscine</option>
-                    <option value="20">Projects</option>
-                    <option value="62">JS Piscine</option>
+                    {
+                        filterList.map((val,i) => {
+                            return (
+                                <option value={val} key={i}>#{val}</option>
+                            )
+                        })
+                    }
                 </select>
             </div>
             <div className='xpTrend container'>
@@ -95,7 +107,7 @@ export function ProfilePage() {
             </div><br />
             <div className='passTrend container'>
                 <div className='header'>Pass Trend</div>
-                <PassTrendGraph passTrend={passTrend} graphFilter={graphFilter}/>
+                <PassTrendGraph passTrend={passTrend} graphFilter={graphFilter} />
             </div><br />
         </div>
     )
