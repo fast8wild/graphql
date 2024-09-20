@@ -105,15 +105,21 @@ form {
     margin: -200px 0 0 -200px;
 }
 
+.filter {
+    margin: -25px 0 0 -450px;
+    height: 80px;
+    width: 900px;
+}
+
 .xpTrend {
     height: 550px;
-    margin: -25px 0 0 -450px;
+    margin: 80px 0 0 -450px;
     width: 900px;
 }
 
 .passTrend {
     height: 550px;
-    margin: 550px 0 0 -450px;
+    margin: 660px 0 0 -450px;
     width: 900px;
 }
 
@@ -134,4 +140,14 @@ form {
 
 .logout-button:active{
     background-color: rgb(32, 110, 255);
+}
+
+select {
+    width: 800px;
+    text-align: center;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: rgb(32, 110, 255);
+    font-size: 14px;
+    padding-left: 5px;
 }

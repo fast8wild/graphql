@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-export function PassTrendGraph({ passTrend }) {
+export function PassTrendGraph({ passTrend, graphFilter }) {
     const [hoveredPoint, setHoveredPoint] = useState(null);
     const width = 1000
     const height = 500
@@ -13,11 +13,18 @@ export function PassTrendGraph({ passTrend }) {
     const fontSizeBig = 14
     const chartWidth = width - xMargin - rightMargin
     const chartHeight = height - yMargin - topMargin
+
+    if (graphFilter === "bh-module") {
+        passTrend = passTrend.filter((val) => !val[0].includes("recated")&&!val[0].includes("piscine")&&!val[0].includes("checkpoint")&&val[0].includes(graphFilter))
+    } else if (graphFilter) {
+        passTrend = passTrend.filter((val) => !val[0].includes("recated")&&val[0].includes(graphFilter))
+    }
+
+    passTrend = passTrend.map((val) => [val[0].slice(9),val[1]])
+
     const xLim = passTrend.length
     const yLim = 1
-
     let failCount = 0
-
     let passCount = 0
     passTrend.forEach((current) => {
         current[1] > 0 ? passCount++ : failCount++
@@ -53,7 +60,7 @@ export function PassTrendGraph({ passTrend }) {
                     key={i}
                     cx={xScale(i)}
                     cy={yScale(d[1])}
-                    r="3"
+                    r="4"
                     fill="#0074d9"
                     onMouseEnter={() => setHoveredPoint(i)}
                     onMouseLeave={() => setHoveredPoint(null)}
@@ -61,11 +68,11 @@ export function PassTrendGraph({ passTrend }) {
         })}
         {hoveredPoint && (
             <g transform={`translate(${xScale(hoveredPoint)},${yScale(passTrend[hoveredPoint][1])})`}>
-                <rect x="-140" y="0" width="280" height="40" fill="white" stroke="#0074d9" />
-                <text x="0" y="32" textAnchor="middle" fill="#0074d9" fontSize={fontSizeBig}>
-                    XP: {passTrend[hoveredPoint][1]}
+                <rect x="-140" y="10" width="280" height="40" fill="white" stroke="#0074d9" />
+                <text x="0" y="42" textAnchor="middle" fill="#0074d9" fontSize={fontSizeBig}>
+                    Grade: {passTrend[hoveredPoint][1]>=1 ? "Pass":"Fail"}
                 </text>
-                <text x="0" y="17" textAnchor="middle" fill="#0074d9" fontSize={fontSizeBig}>
+                <text x="0" y="27" textAnchor="middle" fill="#0074d9" fontSize={fontSizeBig}>
                     Project: {passTrend[hoveredPoint][0].substring(Math.max(0,passTrend[hoveredPoint][0].length-30),passTrend[hoveredPoint][0].length)}
                 </text>
             </g>

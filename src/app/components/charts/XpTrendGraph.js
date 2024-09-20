@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-export function XpTrendGraph({ xpTrend }) {
+export function XpTrendGraph({ xpTrend, graphFilter }) {
     const [hoveredPoint, setHoveredPoint] = useState(null);
     const width = 1000
     const height = 500
@@ -14,6 +14,14 @@ export function XpTrendGraph({ xpTrend }) {
     const chartWidth = width - xMargin - rightMargin
     const chartHeight = height - yMargin - topMargin
     const cumSum = []
+
+    if (graphFilter === "bh-module") {
+        xpTrend = xpTrend.filter((val) => !val[0].includes("piscine"))
+    } else if (graphFilter){
+        xpTrend = xpTrend.filter((val) => val[0].includes(graphFilter))
+    }
+    xpTrend = xpTrend.map((val) => [val[0].slice(9),val[1]])
+
     const xLim = xpTrend.length
     const yLim = xpTrend.reduce((accum, current) => {
         accum = accum + current[1]
@@ -60,7 +68,7 @@ export function XpTrendGraph({ xpTrend }) {
                     key={i}
                     cx={xScale(i)}
                     cy={yScale(d)}
-                    r="3"
+                    r="4"
                     fill="#0074d9"
                     onMouseEnter={() => setHoveredPoint(i)}
                     onMouseLeave={() => setHoveredPoint(null)}
@@ -68,11 +76,11 @@ export function XpTrendGraph({ xpTrend }) {
         })}
         {hoveredPoint && (
             <g transform={`translate(${xScale(hoveredPoint)},${yScale(cumSum[hoveredPoint])})`}>
-                <rect x="-140" y="0" width="280" height="40" fill="white" stroke="#0074d9" />
-                <text x="0" y="32" textAnchor="middle" fill="#0074d9" fontSize={fontSizeBig}>
+                <rect x="-140" y="10" width="280" height="40" fill="white" stroke="#0074d9" />
+                <text x="0" y="42" textAnchor="middle" fill="#0074d9" fontSize={fontSizeBig}>
                     XP: {xpTrend[hoveredPoint][1]}
                 </text>
-                <text x="0" y="17" textAnchor="middle" fill="#0074d9" fontSize={fontSizeBig}>
+                <text x="0" y="27" textAnchor="middle" fill="#0074d9" fontSize={fontSizeBig}>
                     Project: {xpTrend[hoveredPoint][0].substring(Math.max(0,xpTrend[hoveredPoint][0].length-30),xpTrend[hoveredPoint][0].length)}
                 </text>
             </g>

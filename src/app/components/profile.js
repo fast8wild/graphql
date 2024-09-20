@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 import { fetchAuditRatioData, fetchPassTrendData, fetchProfileData, fetchXPTrendData } from '../utils/api';
 import { useAuth, getJWT, parseJwt } from '../utils/auth'
 import { useNavigate, Navigate } from 'react-router-dom';
-import { AuditRatioPieChart } from './charts/AuditRatioPieChart';
+import { AuditRatioPieChart } from './Charts/AuditRatioPieChart';
 import { XpTrendGraph } from './charts/XpTrendGraph';
 import { PassTrendGraph } from './charts/PassTrendGraph';
 
@@ -14,6 +14,7 @@ export function ProfilePage() {
     const [auditRatio, setAuditRatio] = useState(null)
     const [passTrend, setPassTrend] = useState(null)
     const [xpTrend, setXpTrend] = useState(null)
+    const [graphFilter, setGraphFilter] = useState("")
     const navigate = useNavigate();
     const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -79,13 +80,23 @@ export function ProfilePage() {
                 <div className='header'>Audit Ratio</div>
                 <AuditRatioPieChart auditRatio={auditRatio} />
             </div><br />
+            <div className='filter container'>
+                <div className='header'>Trend Filter</div>
+                <select name="filter" id="filter" value={graphFilter} onChange={(event) => setGraphFilter(event.target.value)}>
+                    <option value="">All</option>
+                    <option value="bh-piscine">Go Piscine</option>
+                    <option value="checkpoint">Checkpoints</option>
+                    <option value="bh-module">Module #42</option>
+                    <option value="piscine-js">JS Piscine</option>
+                </select>
+            </div>
             <div className='xpTrend container'>
                 <div className='header'>XP Trend</div>
-                <XpTrendGraph xpTrend={xpTrend} />
+                <XpTrendGraph xpTrend={xpTrend} graphFilter={graphFilter} />
             </div><br />
             <div className='passTrend container'>
                 <div className='header'>Pass Trend</div>
-                <PassTrendGraph passTrend={passTrend} />
+                <PassTrendGraph passTrend={passTrend} graphFilter={graphFilter}/>
             </div><br />
         </div>
     )
