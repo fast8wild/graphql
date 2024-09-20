@@ -14,10 +14,8 @@ export function PassTrendGraph({ passTrend, graphFilter }) {
     const chartWidth = width - xMargin - rightMargin
     const chartHeight = height - yMargin - topMargin
 
-    if (graphFilter === "bh-module") {
-        passTrend = passTrend.filter((val) => !val[0].includes("recated")&&!val[0].includes("piscine")&&!val[0].includes("checkpoint")&&val[0].includes(graphFilter))
-    } else if (graphFilter) {
-        passTrend = passTrend.filter((val) => !val[0].includes("recated")&&val[0].includes(graphFilter))
+    if (graphFilter) {
+        passTrend = passTrend.filter((val) => val[2]===graphFilter)
     }
 
     passTrend = passTrend.map((val) => [val[0].slice(9),val[1]])

@@ -45,6 +45,7 @@ query GetPassTrend($userId: Int!) {
   ) {
     path
     grade
+    eventId
   }
 }
 `
@@ -70,6 +71,7 @@ query GetXpTrend($userId: Int!) {
   ) {
     path
     amount
+    eventId
   }
 }
 `

@@ -14,7 +14,7 @@ export function ProfilePage() {
     const [auditRatio, setAuditRatio] = useState(null)
     const [passTrend, setPassTrend] = useState(null)
     const [xpTrend, setXpTrend] = useState(null)
-    const [graphFilter, setGraphFilter] = useState("")
+    const [graphFilter, setGraphFilter] = useState(0)
     const navigate = useNavigate();
     const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -82,12 +82,11 @@ export function ProfilePage() {
             </div><br />
             <div className='filter container'>
                 <div className='header'>Trend Filter</div>
-                <select name="filter" id="filter" value={graphFilter} onChange={(event) => setGraphFilter(event.target.value)}>
-                    <option value="">All</option>
-                    <option value="bh-piscine">Go Piscine</option>
-                    <option value="checkpoint">Checkpoints</option>
-                    <option value="bh-module">Module #42</option>
-                    <option value="piscine-js">JS Piscine</option>
+                <select name="filter" id="filter" value={graphFilter} onChange={(event) => setGraphFilter(Number(event.target.value))}>
+                    <option value="0">All</option>
+                    <option value="37">Go Piscine</option>
+                    <option value="20">Projects</option>
+                    <option value="62">JS Piscine</option>
                 </select>
             </div>
             <div className='xpTrend container'>

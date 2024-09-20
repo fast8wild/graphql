@@ -15,10 +15,8 @@ export function XpTrendGraph({ xpTrend, graphFilter }) {
     const chartHeight = height - yMargin - topMargin
     const cumSum = []
 
-    if (graphFilter === "bh-module") {
-        xpTrend = xpTrend.filter((val) => !val[0].includes("piscine"))
-    } else if (graphFilter){
-        xpTrend = xpTrend.filter((val) => val[0].includes(graphFilter))
+    if (graphFilter) {
+        xpTrend = xpTrend.filter((val) => val[2]===graphFilter)
     }
     xpTrend = xpTrend.map((val) => [val[0].slice(9),val[1]])
 
