@@ -28,6 +28,8 @@ export function ProfilePage() {
         navigate("/", { replace: true });
     }
 
+    const toGraphIQL = () => navigate('/graphiql', { replace: true });
+
     const LoadData = async () => {
         if (dataLoaded) return;
         try {
@@ -76,6 +78,7 @@ export function ProfilePage() {
     return (
         <div className='profile-page'>
             <button className='logout-button' onClick={handleLogout}>Logout</button> <br />
+            <button className='toProfile-button' onClick={toGraphIQL}>GraphIQL</button> <br />
             <div className='profile container'>
                 <div className='header'>Profile</div>
                 Username: {profile[0]} <br></br>

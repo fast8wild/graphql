@@ -21,7 +21,7 @@ export function LoginPage() {
                 setError('Invalid credentials. Please try again.');
             } else {
                 login(response.token);
-                navigate('/profile', { replace: true });
+                navigate('profile', { replace: true });
             }
         } catch (err) {
             setError('Invalid credentials. Please try again.');
@@ -35,6 +35,7 @@ export function LoginPage() {
             <input className='login-field' id='login-username' placeholder='Username' type='text' onChange={(elem) => setUsername(elem.target.value)}/><br />
             <input className='login-field'id='login-password'placeholder='Password' type='password' onChange={(elem) => setPassword(elem.target.value)}/><br />
             <button type='Submit' className='login-button'>Log In</button>
+            <div className='errormessage'>{error}</div>
         </form>
         </>
     )
